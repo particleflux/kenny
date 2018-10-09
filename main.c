@@ -60,8 +60,7 @@ void encode(FILE *in, FILE *out) {
         }
 
         isUpper = isupper(c);
-        c = tolower(c);
-        c -= 'a';
+        c = tolower(c) - 'a';
 
         buff[2] = charset[c % 3];
         c /= 3;
@@ -79,8 +78,7 @@ void encode(FILE *in, FILE *out) {
 
 void decode(FILE *in, FILE *out) {
     int c, i = 9, ord = 0;
-    unsigned short isUpper = 0
-            ;
+    unsigned short isUpper = 0;
     char *ptr = NULL;
 
     while ((c = fgetc(in)) != EOF && !ferror(in)) {
@@ -105,8 +103,7 @@ void decode(FILE *in, FILE *out) {
             fputc(ord + (isUpper ? 'A' : 'a'), out);
 
             i = 9;
-            ord = 0;
-            isUpper = 0;
+            ord = isUpper = 0;
         } else {
             i /= 3;
         }
@@ -132,7 +129,12 @@ int main(int argc, char **argv) {
                 break;
 
             case 'v':
-                printf("kenny %d.%d.%d\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH);
+                printf(
+                        "kenny %d.%d.%d\n",
+                        VERSION_MAJOR,
+                        VERSION_MINOR,
+                        VERSION_PATCH
+                );
                 exit(EXIT_SUCCESS);
 
             default:
