@@ -6,7 +6,7 @@
 #include <error.h>
 #include <string.h>
 #include <errno.h>
-#include <dialog.h>
+#include <ctype.h>
 #include "config.h"
 
 
