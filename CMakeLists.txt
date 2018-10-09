@@ -21,7 +21,6 @@ add_executable(kenny main.c)
 install(TARGETS kenny DESTINATION bin)
 
 
-enable_testing()
 
 add_test(NAME version COMMAND kenny --version)
 set_tests_properties(version PROPERTIES PASS_REGULAR_EXPRESSION "kenny [0-9]+.[0-9]+.[0-9]+")
