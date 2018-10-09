@@ -7,5 +7,5 @@ script:
   - mkdir build
   - cd build
   - cmake ..
-  - ctest
   - make
+  - ctest
