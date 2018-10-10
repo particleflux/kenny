@@ -1,0 +1,33 @@
+.TH kenny 1 2018-10-10
+.SH NAME
+kenny \- Kenny-speak en- and decoder
+.SH SYNOPSIS
+.B kenny
+[\fI\-d\fR]
+[\fIFILE\fR]
+.SH DESCRIPTION
+.Nm
+Kenny encode or decode \fIFILE\fR, or standard input, to standard output.
+.Pp
+With no \fIFILE\fR, or when \fIFILE\fR is -, read standard input.
+.SH OPTIONS
+.TP
+.B \-d, --decode
+decode instead of encoding
+.TP
+.B \-h, --help
+display a short help text
+.TP
+.B \-v, --version
+output version information and exit
+
+.SH EXAMPLES
+.TP
+Encode "Hello World"
+ echo "Hello World" | kenny
+.TP
+Decode an encoded file
+ kenny kenny.txt
+
+.SH AUTHOR
+Stefan Linke (doc (at) particleflux.codes)
