@@ -126,7 +126,6 @@ int main(int argc, char **argv) {
 
             case 'h':
                 usage(EXIT_SUCCESS);
-                break;
 
             case 'v':
                 printf(
@@ -139,7 +138,6 @@ int main(int argc, char **argv) {
 
             default:
                 usage(EXIT_FAILURE);
-                break;
         }
     }
 
