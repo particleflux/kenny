@@ -11,8 +11,9 @@ before_script:
 script:
   - mkdir build
   - cd build
-  - cmake ..
-  - make coverage
+  - if [[ "$CC" == "gcc" ]]; then cmake -DCodeCoverage=ON .. ; else cmake ..; fi
+  - make test
+  - if [[ "$CC" == "gcc" ]]; then make coverage; fi
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
