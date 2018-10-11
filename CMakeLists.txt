@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.9)
 project(kenny C)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-modules")
+
+enable_testing()
+
+option(CodeCoverage "CodeCoverage" OFF)
+
+
+
 set(CMAKE_C_STANDARD 99)
 
 set(VERSION_MAJOR 1)
@@ -8,6 +16,29 @@ set(VERSION_MINOR 0)
 set(VERSION_PATCH 0)
 
 add_definitions(-Wall)
+
+
+if (CodeCoverage MATCHES ON)
+    set(CMAKE_BUILD_TYPE "Debug")
+    set(CMAKE_CFLAGS -Wall -g -O0 --coverage)
+
+    include(CodeCoverage)
+
+    APPEND_COVERAGE_COMPILER_FLAGS()
+
+    SETUP_TARGET_FOR_COVERAGE_GCOVR_XML(
+            NAME coverage
+            EXECUTABLE ctest -V -j ${PROCESSOR_COUNT}
+            DEPENDENCIES kenny
+    )
+
+    SETUP_TARGET_FOR_COVERAGE_GCOVR_HTML(
+            NAME coverage-html
+            EXECUTABLE ctest -V -j ${PROCESSOR_COUNT}
+            DEPENDENCIES kenny
+    )
+endif()
+
 
 configure_file(
     "${PROJECT_SOURCE_DIR}/config.h.in"
@@ -18,10 +49,11 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 add_executable(kenny main.c)
 
+
 install(TARGETS kenny DESTINATION bin)
 
 
-enable_testing()
+
 
 add_test(NAME version COMMAND ./kenny --version)
 set_tests_properties(version PROPERTIES PASS_REGULAR_EXPRESSION "kenny [0-9]+.[0-9]+.[0-9]+")
@@ -52,4 +84,3 @@ set_tests_properties(decode_special PROPERTIES PASS_REGULAR_EXPRESSION "Hallo We
 
 add_test(NAME file-input COMMAND /bin/sh -c "echo -n abc > foobar.txt ; ./kenny foobar.txt ; rm foobar.txt")
 set_tests_properties(file-input PROPERTIES PASS_REGULAR_EXPRESSION "mmmmmpmmf")
-
