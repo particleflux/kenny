@@ -29,6 +29,15 @@ set_tests_properties(version PROPERTIES PASS_REGULAR_EXPRESSION "kenny [0-9]+.[0
 add_test(NAME help COMMAND ./kenny --help)
 set_tests_properties(help PROPERTIES PASS_REGULAR_EXPRESSION "Usage:")
 
+add_test(NAME extra-argument COMMAND ./kenny asdf foo)
+set_tests_properties(extra-argument PROPERTIES PASS_REGULAR_EXPRESSION "--help' for more information")
+
+add_test(NAME unknown-option COMMAND ./kenny --asdf)
+set_tests_properties(unknown-option PROPERTIES PASS_REGULAR_EXPRESSION "--help' for more information")
+
+add_test(NAME file-not-found COMMAND ./kenny asdf)
+set_tests_properties(file-not-found PROPERTIES PASS_REGULAR_EXPRESSION "asdf: No such file or directory")
+
 add_test(NAME encode COMMAND /bin/sh -c "echo -n abcdefghijklmnopqrstuvwxyz | ./kenny")
 set_tests_properties(encode PROPERTIES PASS_REGULAR_EXPRESSION "mmmmmpmmfmpmmppmpfmfmmfpmffpmmpmppmfppmpppppfpfmpfppfffmmfmpfmffpmfppfpfffmffp")
 
@@ -38,5 +47,9 @@ set_tests_properties(decode PROPERTIES PASS_REGULAR_EXPRESSION "abcdefghijklmnop
 add_test(NAME encode_special COMMAND /bin/sh -c "echo -n Hallo Welt! | ./kenny")
 set_tests_properties(encode_special PROPERTIES PASS_REGULAR_EXPRESSION "Mfpmmmpmfpmfppf Fppmpppmffmp!")
 
-add_test(NAME decode_special COMMAND /bin/sh -c "echo -n Mfpmmmpmfpmfppf Fppmpppmffmp! | ./kenny -d")
-set_tests_properties(decode_special PROPERTIES PASS_REGULAR_EXPRESSION "Hallo Welt!")
+add_test(NAME decode_special COMMAND /bin/sh -c "echo -n 'Mfpmmmpmfpmfppf Fppmpppmffmp! Bye' | ./kenny -d")
+set_tests_properties(decode_special PROPERTIES PASS_REGULAR_EXPRESSION "Hallo Welt! Bye")
+
+add_test(NAME file-input COMMAND /bin/sh -c "echo -n abc > foobar.txt ; ./kenny foobar.txt ; rm foobar.txt")
+set_tests_properties(file-input PROPERTIES PASS_REGULAR_EXPRESSION "mmmmmpmmf")
+
