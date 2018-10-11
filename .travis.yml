@@ -3,6 +3,11 @@ compiler:
   - clang
   - gcc
 
+addons:
+  apt:
+    packages:
+      - gcovr
+
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
@@ -11,7 +16,8 @@ before_script:
 script:
   - mkdir build
   - cd build
-  - if [[ "$CC" == "gcc" ]]; then cmake -DCodeCoverage=ON .. ; else cmake ..; fi
+  - if [[ "$CC" == "gcc" ]]; then cmake -DCodeCoverage=ON .. ; else cmake  ..; fi
+  - make
   - make test
   - if [[ "$CC" == "gcc" ]]; then make coverage; fi
 
