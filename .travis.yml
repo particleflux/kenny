@@ -9,9 +9,9 @@ addons:
       - gcovr
 
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > /tmp/cc-test-reporter
+  - chmod +x /tmp/cc-test-reporter
+  - /tmp/cc-test-reporter before-build
 
 script:
   - mkdir build
@@ -22,4 +22,4 @@ script:
   - if [[ "$CC" == "gcc" ]]; then make coverage; fi
 
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - /tmp/cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
