@@ -93,7 +93,7 @@ void decode(FILE *in, FILE *out) {
         c = tolower(c);
         ptr = strchr(charset, c);
         if (ptr == NULL) {
-            fputc(c, out);
+            fputc(isUpper ? toupper(c) : c, out);
             continue;
         }
 
