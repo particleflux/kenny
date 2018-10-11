@@ -51,7 +51,7 @@ add_executable(kenny main.c)
 
 
 install(TARGETS kenny DESTINATION bin)
-
+install(FILES kenny.1 DESTINATION share/man/man1)
 
 
 
