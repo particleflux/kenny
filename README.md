@@ -63,6 +63,14 @@ make
 sudo make install
 ```
 
+### Gentoo
+
+There is an ebuild available in my personal overlay:
+
+```
+sudo layman -o https://github.com/particleflux/overlay/raw/master/overlay.xml -f -a particleflux-overlay
+emerge -a kenny
+```
 
 ## Running tests
 
