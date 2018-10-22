@@ -9,7 +9,9 @@
 [![codecov](https://codecov.io/gh/particleflux/kenny/branch/master/graph/badge.svg)](https://codecov.io/gh/particleflux/kenny)
 
 
-![](demo.gif)
+![logo](kenny.png)
+
+![demo](demo.gif)
 
 
 
