@@ -1,3 +1,5 @@
+![logo](kenny.png)
+
 # kenny
 
 > A kenny-speak en- and decoder
@@ -8,8 +10,6 @@
 [![Build Status](https://travis-ci.org/particleflux/kenny.svg?branch=master)](https://travis-ci.org/particleflux/kenny)
 [![codecov](https://codecov.io/gh/particleflux/kenny/branch/master/graph/badge.svg)](https://codecov.io/gh/particleflux/kenny)
 
-
-![logo](kenny.png)
 
 ![demo](demo.gif)
 
