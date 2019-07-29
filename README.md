@@ -6,7 +6,7 @@
 
 > "Ppfmfp ppmffm Mfmppfmpm! Fmpmfpmppffm pmpmffpmfpmfmppmpm Pmpmppppppppffm!"
 
-[![GitHub release](https://img.shields.io/github/release/particleflux/kenny.svg)](https://github.com/particleflux/kenny/releases)
+[![GitHub release](https://img.shields.io/github/release/particleflux/kenny)](https://github.com/particleflux/kenny/releases)
 [![Build Status](https://travis-ci.org/particleflux/kenny.svg?branch=master)](https://travis-ci.org/particleflux/kenny)
 [![codecov](https://codecov.io/gh/particleflux/kenny/branch/master/graph/badge.svg)](https://codecov.io/gh/particleflux/kenny)
 
