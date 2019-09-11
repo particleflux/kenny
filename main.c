@@ -11,13 +11,10 @@
 
 
 struct option long_options[] = {
-        {"decode",         no_argument, 0,    'd'},
-        {"ignore-garbage", no_argument, 0,    'i'},
-
-        {"help",           no_argument, NULL, 'h'},
-        {"version",        no_argument, NULL, 'v'},
-
-        {NULL, 0,                       NULL, 0}
+    {"decode",  no_argument, NULL, 'd'},
+    {"help",    no_argument, NULL, 'h'},
+    {"version", no_argument, NULL, 'v'},
+    {0, 0, 0, 0}
 };
 
 const char *program_name;
