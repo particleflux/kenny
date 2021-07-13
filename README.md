@@ -70,8 +70,8 @@ sudo make install
 There is an ebuild available in my [personal overlay]:
 
 ```
-sudo layman -o https://github.com/particleflux/overlay/raw/master/overlay.xml -f -a particleflux-overlay
-emerge -a kenny
+sudo layman -o https://github.com/particleflux/overlay/raw/master/repositories.xml -f -a particleflux
+emerge -a app-misc/kenny
 ```
 
 ## Running tests
