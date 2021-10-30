@@ -73,7 +73,7 @@ find_program( GCOV_PATH gcov )
 find_program( LCOV_PATH  NAMES lcov lcov.bat lcov.exe lcov.perl)
 find_program( GENHTML_PATH NAMES genhtml genhtml.perl genhtml.bat )
 find_program( GCOVR_PATH gcovr PATHS ${CMAKE_SOURCE_DIR}/scripts/test)
-find_program( SIMPLE_PYTHON_EXECUTABLE python )
+find_program( SIMPLE_PYTHON_EXECUTABLE python3 )
 
 if(NOT GCOV_PATH)
     message(FATAL_ERROR "gcov not found! Aborting...")

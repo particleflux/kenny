@@ -1,0 +1,69 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    environment:
+      CC: << parameters.compiler >>
+    parameters:
+      compiler:
+        type: string
+        default: "gcc"
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install coverage tool
+          command: |
+            sudo apt-get update
+            sudo apt-get install gcovr
+
+            if [[ "$CC" == "clang" ]]; then
+              sudo apt-get install clang
+            fi
+
+      - run:
+          name: Run Tests
+          command: |
+            mkdir build && cd build
+
+            # coverage only supported for GCC
+            if [[ "$CC" == "gcc" ]]; then
+              cmake -DCodeCoverage=ON ..
+            else
+              cmake  ..
+            fi
+
+            make
+            make test
+
+            if [[ "$CC" == "gcc" ]]; then
+              make coverage
+              bash <(curl -s https://codecov.io/bash)
+            fi
+
+      - store_artifacts:
+          path: build
+
+workflows:
+  version: 2
+  commit:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              compiler: ["gcc", "clang"]
+  nightly:
+    triggers:
+      - schedule:
+          cron: 0 0 * * *
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              compiler: ["gcc", "clang"]
