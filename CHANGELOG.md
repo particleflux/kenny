@@ -6,8 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## 1.0.0 - 2018-10-09
+## [1.0.1] - 2021-11-04
+### Fixed
+- Removed dead/unused option `--ignore-garbage`
+
+## [1.0.0] - 2018-10-09
 - Initial version
 
-
-[Unreleased]: https://github.com/particleflux/k3rn3l/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/particleflux/kenny/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/particleflux/kenny/compare/1.0.0...1.0.1
+[1.0.0]: https://github.com/particleflux/kenny/tree/1.0.0
