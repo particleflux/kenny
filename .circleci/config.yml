@@ -32,7 +32,7 @@ jobs:
             if [[ "$CC" == "gcc" ]]; then
               cmake -DCodeCoverage=ON ..
             else
-              cmake  ..
+              cmake ..
             fi
 
             make
